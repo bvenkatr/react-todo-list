@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import TodoStore from "../Stores/TodoStore";
+import {dispatcher} from "@nsisodiya/flux";
 
 class Todo extends Component {
     constructor(props) {
@@ -7,6 +9,10 @@ class Todo extends Component {
             currentValue: "",
             todoItems: []
         };
+        // add a listener for state change
+        TodoStore.onChange(() => {
+            this.setState(TodoStore.getState());
+        });
     };
 
     //================Start List of instance methods===================
@@ -28,29 +34,21 @@ class Todo extends Component {
         }).then((res) => {
             return res.json();
         }).then((data) => {
-            fetch("http://localhost:8001/posts").then((data) => {
-                return data.json()
-            }).then((res) => {
-                this.setState({
-                    todoItems: res
-                });
-            });
+            dispatcher.publish("TODO_REQUEST_DATA");
         }).catch((err) => {
-            throw "There was a error while creating post";
+            throw new Error("There was a error while creating post");
         });
     }
 
     //================End of instace methods===================
 
     //=================Start List of life cycle methods================
+    componentWillMount() {
+        dispatcher.publish("TODO_REQUEST_DATA");
+    }
+
     componentDidMount() {
-        fetch("http://localhost:8001/posts").then((data) => {
-            return data.json()
-        }).then((res) => {
-            this.setState({
-                todoItems: res
-            });
-        });
+        //dispatcher.publish("TODO_REQUEST_DATA");
     }
 
     //=================End List of life cycle methods================
