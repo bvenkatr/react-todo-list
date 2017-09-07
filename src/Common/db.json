@@ -1,0 +1,44 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Learn nodejs",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "learn raectjs",
+      "author": "typicode"
+    },
+    {
+      "id": 3,
+      "title": "learn angularjs",
+      "author": "typicode"
+    },
+    {
+      "id": 4,
+      "title": "learnjavascript",
+      "author": "typicode"
+    },
+    {
+      "title": "learn postgresql",
+      "author": "learn postgresql",
+      "id": 5
+    },
+    {
+      "title": "learn graphql",
+      "author": "learn graphql",
+      "id": 6
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 3
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
